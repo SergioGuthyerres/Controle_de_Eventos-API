@@ -8,7 +8,18 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export class AuthAccessTokenSchema extends BaseModel {
-  static $columns = ['abilities', 'createdAt', 'expiresAt', 'hash', 'id', 'lastUsedAt', 'name', 'tokenableId', 'type', 'updatedAt'] as const
+  static $columns = [
+    'abilities',
+    'createdAt',
+    'expiresAt',
+    'hash',
+    'id',
+    'lastUsedAt',
+    'name',
+    'tokenableId',
+    'type',
+    'updatedAt',
+  ] as const
   $columns = AuthAccessTokenSchema.$columns
   @column()
   declare abilities: string
@@ -32,19 +43,61 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
-export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'updatedAt'] as const
-  $columns = UserSchema.$columns
+export class EventoSchema extends BaseModel {
+  static $columns = [
+    'createdAt',
+    'dataFinal',
+    'dataInicio',
+    'id',
+    'local',
+    'nome',
+    'updatedAt',
+  ] as const
+  $columns = EventoSchema.$columns
   @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-  @column()
-  declare email: string
-  @column()
-  declare fullName: string | null
+  declare createdAt: DateTime | null
+  @column.dateTime()
+  declare dataFinal: DateTime
+  @column.dateTime()
+  declare dataInicio: DateTime
   @column({ isPrimary: true })
   declare id: number
-  @column({ serializeAs: null })
-  declare password: string
+  @column()
+  declare local: string
+  @column()
+  declare nome: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class InscricaoSchema extends BaseModel {
+  static $columns = ['createdAt', 'idEvento', 'idParticipante', 'updatedAt'] as const
+  $columns = InscricaoSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime | null
+  @column()
+  declare idEvento: number
+  @column()
+  declare idParticipante: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class ParticipanteSchema extends BaseModel {
+  static $columns = ['createdAt', 'dataNasc', 'email', 'id', 'nome', 'senha', 'updatedAt'] as const
+  $columns = ParticipanteSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column.dateTime()
+  declare dataNasc: DateTime
+  @column()
+  declare email: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare nome: string | null
+  @column()
+  declare senha: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 }
