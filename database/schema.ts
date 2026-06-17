@@ -48,7 +48,9 @@ export class EventoSchema extends BaseModel {
     'createdAt',
     'dataFinal',
     'dataInicio',
+    'descricao',
     'id',
+    'idOrganizador',
     'local',
     'nome',
     'updatedAt',
@@ -60,8 +62,12 @@ export class EventoSchema extends BaseModel {
   declare dataFinal: DateTime
   @column.dateTime()
   declare dataInicio: DateTime
+  @column()
+  declare descricao: string
   @column({ isPrimary: true })
   declare id: number
+  @column()
+  declare idOrganizador: number
   @column()
   declare local: string
   @column()

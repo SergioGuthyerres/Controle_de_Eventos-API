@@ -7,10 +7,17 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('nome').notNullable()
+      table.string('descricao').notNullable()
       table.dateTime('data_inicio').notNullable()
       table.dateTime('data_final').notNullable()
       table.string('local').notNullable()
-
+      table
+        .integer('id_organizador')
+        .notNullable()
+        .unsigned()
+        .references('id')
+        .inTable('participantes')
+        .onDelete('CASCADE')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

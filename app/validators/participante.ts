@@ -5,15 +5,15 @@ import vine from '@vinejs/vine'
  */
 const email = () => vine.string().email().maxLength(254)
 const password = () => vine.string().minLength(8).maxLength(32)
-
+const dataNasc = () => vine.date()
 /**
  * Validator to use when performing self-signup
  */
 export const signupValidator = vine.create({
-  fullName: vine.string().nullable(),
-  email: email().unique({ table: 'users', column: 'email' }),
-  password: password(),
-  passwordConfirmation: password().sameAs('password'),
+  nome: vine.string(),
+  email: email().unique({ table: 'participante', column: 'email' }),
+  senha: password(),
+  dataNasc: dataNasc(),
 })
 
 /**
@@ -22,5 +22,5 @@ export const signupValidator = vine.create({
  */
 export const loginValidator = vine.create({
   email: email(),
-  password: vine.string(),
+  senha: vine.string(),
 })
