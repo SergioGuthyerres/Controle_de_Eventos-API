@@ -1,30 +1,80 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import Evento from '#models/evento'
-import { createEventValidator } from '#validators/evento'
+import { createEventValidator, updateEventValidator } from '#validators/evento'
 export default class EventosController {
-  async index({auth}: HttpContext) {
-    const evento = await auth.user?.related('eventos').query()
-    return await Evento.all()
+  async index({}: HttpContext) {
+    const eventos = await Evento.all()
+    const eventosValidos: Evento[] = []
+    const dataAtual = new Date()
+
+    eventos.map((evento) => {
+      const dataFimEvento = new Date(evento.dataFinal.toJSDate())
+
+      if (dataAtual.getTime() > dataFimEvento.getTime()) {
+        eventosValidos.push(evento)
+      }
+    })
+    return eventosValidos
   }
 
   async store({ request, auth }: HttpContext) {
     const participante = auth.user!
-    const { nome, descricao, dataInicio, dataFim, local } = await request.validateUsing(createEventValidator)
+    const { nome, descricao, dataInicio, dataFinal, local } =
+      await request.validateUsing(createEventValidator)
     const evento = await participante.related('eventos').create({
-      nome, descricao, dataInicio, dataFim, local}
-    )
+      nome,
+      descricao,
+      dataInicio,
+      dataFinal,
+      local,
+    })
 
-    return
+    return evento
   }
 
   async show({ params, response }: HttpContext) {
-    try{
-      const evento = Evento.findByOrFail('id', params.id)
+    try {
+      const evento = await Evento.findByOrFail('id', params.id)
       return evento
+    } catch {
+      return response.status(404).json('evento not found')
     }
   }
 
-  async update({ params, request }: HttpContext) {}
+  async update({ auth, params, request, response }: HttpContext) {
+    try {
+      const evento = await Evento.findByOrFail('id', params.id)
+      const participante = auth.user!
+      const { nome, descricao, dataInicio, dataFinal, local } =
+        await request.validateUsing(updateEventValidator)
+      evento.merge({
+        nome,
+        descricao,
+        dataInicio,
+        dataFinal,
+        local,
+      })
+      if (evento.idOrganizador !== participante.id) {
+        return response.status(403).json({ erro: "You can't update this Event" })
+      }
+      await evento.save()
+      return evento
+    } catch {
+      return response.status(404).json({ erro: 'Evento not Found' })
+    }
+  }
 
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, auth, response }: HttpContext) {
+    try {
+      const evento = await Evento.findByOrFail('id', params.id)
+      const participante = auth.user!
+      if (evento.idOrganizador !== participante.id) {
+        return response.status(403).json({ erro: "You can't delete this Event" })
+      }
+      await evento.delete()
+      return response.status(203)
+    } catch {
+      return response.status(404).json({ erro: 'Evento not Found' })
+    }
+  }
 }

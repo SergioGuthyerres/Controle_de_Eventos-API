@@ -9,6 +9,7 @@ import Inscricao from './inscricao.ts'
 import Evento from './evento.ts'
 
 export default class Participante extends compose(ParticipanteSchema, withAuthFinder(hash)) {
+  static table = 'participantes'
   static accessTokens = DbAccessTokensProvider.forModel(Participante)
   declare currentAccessToken?: AccessToken
 

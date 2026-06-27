@@ -5,6 +5,7 @@ import Inscricao from './inscricao.ts'
 import Participante from './participante.ts'
 
 export default class Evento extends EventoSchema {
+  static table = 'eventos'
   @belongsTo(() => Participante)
   declare participante: BelongsTo<typeof Participante>
   @hasMany(() => Inscricao)

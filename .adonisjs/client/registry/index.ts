@@ -30,6 +30,90 @@ const routes = {
     tokens: [{"old":"/api/v1/account/logout","type":0,"val":"api","end":""},{"old":"/api/v1/account/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/account/logout","type":0,"val":"account","end":""},{"old":"/api/v1/account/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['profile.access_tokens.destroy']['types'],
   },
+  'participantes.participantes.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/participantes',
+    tokens: [{"old":"/api/v1/participantes","type":0,"val":"api","end":""},{"old":"/api/v1/participantes","type":0,"val":"v1","end":""},{"old":"/api/v1/participantes","type":0,"val":"participantes","end":""}],
+    types: placeholder as Registry['participantes.participantes.index']['types'],
+  },
+  'participantes.participantes.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/participantes',
+    tokens: [{"old":"/api/v1/participantes","type":0,"val":"api","end":""},{"old":"/api/v1/participantes","type":0,"val":"v1","end":""},{"old":"/api/v1/participantes","type":0,"val":"participantes","end":""}],
+    types: placeholder as Registry['participantes.participantes.store']['types'],
+  },
+  'participantes.participantes.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/participantes/:id',
+    tokens: [{"old":"/api/v1/participantes/:id","type":0,"val":"api","end":""},{"old":"/api/v1/participantes/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/participantes/:id","type":0,"val":"participantes","end":""},{"old":"/api/v1/participantes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['participantes.participantes.show']['types'],
+  },
+  'participantes.participantes.update': {
+    methods: ["PUT"],
+    pattern: '/api/v1/participantes/:id',
+    tokens: [{"old":"/api/v1/participantes/:id","type":0,"val":"api","end":""},{"old":"/api/v1/participantes/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/participantes/:id","type":0,"val":"participantes","end":""},{"old":"/api/v1/participantes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['participantes.participantes.update']['types'],
+  },
+  'participantes.participantes.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/participantes/:id',
+    tokens: [{"old":"/api/v1/participantes/:id","type":0,"val":"api","end":""},{"old":"/api/v1/participantes/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/participantes/:id","type":0,"val":"participantes","end":""},{"old":"/api/v1/participantes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['participantes.participantes.destroy']['types'],
+  },
+  'eventos.eventos.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/eventos',
+    tokens: [{"old":"/api/v1/eventos","type":0,"val":"api","end":""},{"old":"/api/v1/eventos","type":0,"val":"v1","end":""},{"old":"/api/v1/eventos","type":0,"val":"eventos","end":""}],
+    types: placeholder as Registry['eventos.eventos.index']['types'],
+  },
+  'eventos.eventos.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/eventos/:id',
+    tokens: [{"old":"/api/v1/eventos/:id","type":0,"val":"api","end":""},{"old":"/api/v1/eventos/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/eventos/:id","type":0,"val":"eventos","end":""},{"old":"/api/v1/eventos/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['eventos.eventos.show']['types'],
+  },
+  'eventos.eventos.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/eventos',
+    tokens: [{"old":"/api/v1/eventos","type":0,"val":"api","end":""},{"old":"/api/v1/eventos","type":0,"val":"v1","end":""},{"old":"/api/v1/eventos","type":0,"val":"eventos","end":""}],
+    types: placeholder as Registry['eventos.eventos.store']['types'],
+  },
+  'eventos.eventos.update': {
+    methods: ["PUT"],
+    pattern: '/api/v1/eventos/:id',
+    tokens: [{"old":"/api/v1/eventos/:id","type":0,"val":"api","end":""},{"old":"/api/v1/eventos/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/eventos/:id","type":0,"val":"eventos","end":""},{"old":"/api/v1/eventos/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['eventos.eventos.update']['types'],
+  },
+  'eventos.eventos.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/eventos/:id',
+    tokens: [{"old":"/api/v1/eventos/:id","type":0,"val":"api","end":""},{"old":"/api/v1/eventos/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/eventos/:id","type":0,"val":"eventos","end":""},{"old":"/api/v1/eventos/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['eventos.eventos.destroy']['types'],
+  },
+  'eventos.inscricaos.store': {
+    methods: ["POST"],
+    pattern: '/api/v1/eventos/:id/inscricoes',
+    tokens: [{"old":"/api/v1/eventos/:id/inscricoes","type":0,"val":"api","end":""},{"old":"/api/v1/eventos/:id/inscricoes","type":0,"val":"v1","end":""},{"old":"/api/v1/eventos/:id/inscricoes","type":0,"val":"eventos","end":""},{"old":"/api/v1/eventos/:id/inscricoes","type":1,"val":"id","end":""},{"old":"/api/v1/eventos/:id/inscricoes","type":0,"val":"inscricoes","end":""}],
+    types: placeholder as Registry['eventos.inscricaos.store']['types'],
+  },
+  'inscricoes.inscricaos.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/inscricoes',
+    tokens: [{"old":"/api/v1/inscricoes","type":0,"val":"api","end":""},{"old":"/api/v1/inscricoes","type":0,"val":"v1","end":""},{"old":"/api/v1/inscricoes","type":0,"val":"inscricoes","end":""}],
+    types: placeholder as Registry['inscricoes.inscricaos.index']['types'],
+  },
+  'inscricoes.inscricaos.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/inscricoes/:id',
+    tokens: [{"old":"/api/v1/inscricoes/:id","type":0,"val":"api","end":""},{"old":"/api/v1/inscricoes/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/inscricoes/:id","type":0,"val":"inscricoes","end":""},{"old":"/api/v1/inscricoes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['inscricoes.inscricaos.show']['types'],
+  },
+  'inscricoes.inscricaos.destroy': {
+    methods: ["DELETE"],
+    pattern: '/api/v1/inscricoes/:id',
+    tokens: [{"old":"/api/v1/inscricoes/:id","type":0,"val":"api","end":""},{"old":"/api/v1/inscricoes/:id","type":0,"val":"v1","end":""},{"old":"/api/v1/inscricoes/:id","type":0,"val":"inscricoes","end":""},{"old":"/api/v1/inscricoes/:id","type":1,"val":"id","end":""}],
+    types: placeholder as Registry['inscricoes.inscricaos.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }
